@@ -16,7 +16,7 @@ function setup() {
   img.hide();//DON'T WANNA SHOW IMG ON SCREEN
   
   //SLIDER FOR MANUPULATING RESULUTION
-  slider = createSlider(2, 20, 10, 2)
+  slider = createSlider(10, 50, 30, 2)
   res = slider.value();
   
   //PIXELS DENSITY SHOULD BE 1PIXEL/PIXELS
@@ -42,8 +42,8 @@ function draw() {
   }
   
   //UPDATING RESULUTION ON CHANGE
-  res = map(slider.value(), 0, 20, 20, 0)
-  textSize(res)
+  res = slider.value()
+  textSize(width/res)
   
   //LOADING PIXELS
   loadPixels()
@@ -52,8 +52,8 @@ function draw() {
   
   /*ETERATING OVER WHOLE CANVAS
   SPETPPING ACCORDING RESULUTION*/
-  for (var i = 0; i < width; i += res) {
-    for (var j = 0; j < height; j += res) {
+  for (var i = 0; i < width; i += width/res) {
+    for (var j = 0; j < height; j += width/res) {
       
       //GETTING THE INDEX IN IMAGE ARRAY
       let index = (i + j * width) * 4
